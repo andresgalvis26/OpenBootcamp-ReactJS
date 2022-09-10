@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import ContactosListComponent from './components/container/contactos_list';
+import Clock from './components/Clock';
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
         {/* <p>
           Edit <code>src/App.js</code> and save to reload.
         </p> */}
-        <ContactosListComponent></ContactosListComponent>
+        {/* <ContactosListComponent></ContactosListComponent> */}
+        <Clock></Clock>
+
         <a
           className="App-link"
           href="https://reactjs.org"

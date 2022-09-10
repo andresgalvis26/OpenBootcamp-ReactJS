@@ -3,6 +3,9 @@ import { Task } from '../../models/task.class'
 import { LEVELS } from '../../models/levels.enum';
 import TaskComponent from '../pure/task'
 
+// $ Importamos el estilo para ver si se pisa 
+import '../../styles/task.scss'
+
 const TaskListComponent = () => {
 
     // * Creando una nueva tarea * //

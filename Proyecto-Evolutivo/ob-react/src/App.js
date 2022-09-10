@@ -1,9 +1,10 @@
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 // import Greeting from './components/pure/greeting';
 // import Name from './components/pure/name';
 // import GreetingF from './components/pure/greetingF';
 import TaskListComponent from './components/container/task_list.jsx'
+import Greetingstyled from './components/pure/greetingStyled';
 // import Ejemplo1 from './hooks/Ejemplo1.jsx'
 // import Ejemplo2 from './hooks/Ejemplo2.jsx'
 // import MiComponenteConContexto from './hooks/Ejemplo3.jsx';
@@ -13,9 +14,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/*
+        
           <img src={logo} className="App-logo" alt="logo" />
-            Edit <code>src/App.js</code> and save to reload.
+            {/*Edit <code>src/App.js</code> and save to reload.
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -39,7 +40,7 @@ function App() {
 
 
         {/* Componente de listado de tareas  */}
-        <TaskListComponent></TaskListComponent>
+        {/* <TaskListComponent></TaskListComponent> */}
 
 
         {/* Trabajando y conociendo los hooks  */}
@@ -51,6 +52,8 @@ function App() {
             <h4>Todo lo contenido dentro del componente será props.children</h4>
           </Ejemplo4>
          */} 
+
+        <Greetingstyled name='Felipe'></Greetingstyled>
         
 
 
