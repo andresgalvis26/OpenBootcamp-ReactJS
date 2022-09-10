@@ -1,9 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import { Task } from "../../models/task.class";
 
-// Recibe en las props un task (objeto tarea con la estructura definida)
+/**
+ * ? Recibe en las props un task (objeto tarea con la estructura definida)
+ * @param {task}
+ * @returns TaskComponent
+ */
 const TaskComponent = ({ task }) => {
+
+    // Cada modificación en task generará este cambio y console.log
+    useEffect(() => {
+        console.log('Created task')
+        return () => {
+            console.log(`Task: ${task.name} is going to unmount.`);
+        };
+    }, [task]);
+
+
     return (
         <div>
             <h3>Nombre: {task.name}</h3>
