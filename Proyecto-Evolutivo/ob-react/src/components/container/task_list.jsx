@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Task } from '../../models/task.class'
 import { LEVELS } from '../../models/levels.enum';
 import TaskComponent from '../pure/task'
+import Taskform from '../pure/forms/taskForm';
 
 // $ Importamos el estilo para ver si se pisa 
 import '../../styles/task.scss'
@@ -9,10 +10,13 @@ import '../../styles/task.scss'
 const TaskListComponent = () => {
 
     // * Creando una nueva tarea * //
-    const defaultTask = new Task('My First Task #1', 'Default description of my task', false, LEVELS.NORMAL);
+    const defaultTask1 = new Task('Task #1', 'Default description of my task', true, LEVELS.URGENT);
+    const defaultTask2 = new Task('Task #2', 'Default description of my task', false, LEVELS.BLOCKING);
+    const defaultTask3 = new Task('Task #3', 'Default description of my task', true, LEVELS.NORMAL);
+
 
     // * Creando y asignando el estado del componente
-    const [tasks, setTasks] = useState(defaultTask);
+    const [tasks, setTasks] = useState([defaultTask1, defaultTask2, defaultTask3]);
     const [loading, setLoading] = useState(true);
 
     /**
@@ -30,20 +34,98 @@ const TaskListComponent = () => {
 
     // const firstTask = new Task('Ropa', 'Recoger ropa lavada hace unos días', false, LEVELS.URGENT);
 
-    // TODO: Cambiar el estado de una tarea 
-    const changeCompleted = (id) => {
-        console.log('Cambiar el estado de una tarea en la lección #3');
+    // ! Cambia el estado de una tarea
+    function completeTask(task) {
+        console.log('Complete this task:', task)
+        const index = tasks.indexOf(task);
+
+        // Utilizar siempre una variable temporal
+        const tempTasks = [...tasks]
+
+        // Le damos el valor inverso al que ya tiene
+        tempTasks[index].completed = !tempTasks[index].completed;
+
+        // Actualizamos el nuevo estado con la lista de tareas actualizada.
+        setTasks(tempTasks);
+    }
+
+    // ? Eliminar una tarea
+    function deleteTask(task) {
+        console.log('Delete this task:', task)
+        const index = tasks.indexOf(task);
+
+        // Utilizar siempre una variable temporal
+        const tempTasks = [...tasks]
+
+        // Vamos a iterar sobre la variable temporal, hacer splice o borrado, tomamos la tarea que está en index y eliminamos un elemento.
+        tempTasks.splice(index, 1);
+
+        setTasks(tempTasks);
+    }
+
+
+    // ? Añadir una tarea
+    function addTask(task) {
+        console.log('Add this task:', task)
+        const index = tasks.indexOf(task);
+
+        // Utilizar siempre una variable temporal
+        const tempTasks = [...tasks]
+
+        // Vamos a iterar sobre la variable temporal, hacer splice o borrado, tomamos la tarea que está en index y eliminamos un elemento.
+        tempTasks.push(task);
+
+        setTasks(tempTasks);
     }
 
     return (
         <div>
-            <div>
-                <h2>Tus tareas:</h2>
+            <div className='col-12'>
+                <div className='card'>
+                    {/* Card Header - Title */}
+                    <div className='card-header p-3'>
+                        <h2>Tus tareas:</h2>
+                    </div>
+
+                    {/* Card Body - Content  */}
+                    <div className='card-body' data-mdb-perfect-scrollbar='true' style={ {position: 'relative', height: '400px'} }>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope='col'>Título</th>
+                                    <th scope='col'>Descripción</th>
+                                    <th scope='col'>Prioridad</th>
+                                    <th scope='col'>Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {/* ! Aplicar el map para renderizar una lista */}
+                                {/* TODO: Iterar sobre una lista de tareas */}
+
+                                {/* El map devolverá diferentes tareas  */}
+                                { tasks.map((task, index) => {
+                                    return (
+                                        <TaskComponent 
+                                            key={index} 
+                                            task={task}
+                                            complete={completeTask}
+                                            remove={deleteTask}>    
+                                        </TaskComponent>
+                                        )
+                                    } 
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
-            {/* ! Aplicar el map para renderizar una lista */}
+            <Taskform add={addTask}></Taskform>
+            
 
             {/* Enviando la tarea por medio de props */}
-            <TaskComponent task={tasks}> </TaskComponent>
+            {/* <TaskComponent task={tasks}> </TaskComponent> */}
 
         </div>
     )

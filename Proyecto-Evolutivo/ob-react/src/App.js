@@ -9,13 +9,14 @@ import Greetingstyled from './components/pure/greetingStyled';
 // import Ejemplo2 from './hooks/Ejemplo2.jsx'
 // import MiComponenteConContexto from './hooks/Ejemplo3.jsx';
 // import Ejemplo4 from './hooks/Ejemplo4.jsx'
+import Father from './components/container/father';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header"> */}
         
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
             {/*Edit <code>src/App.js</code> and save to reload.
           <a
             className="App-link"
@@ -53,12 +54,17 @@ function App() {
           </Ejemplo4>
          */} 
 
-        <Greetingstyled name='Felipe'></Greetingstyled>
+        {/* <Greetingstyled name='Felipe'></Greetingstyled> */}
         
 
 
 
-      </header>
+      {/* </header> */}
+      <TaskListComponent></TaskListComponent>
+
+
+      {/* Gestión de eventos */}
+      {/* <Father></Father> */}
     </div>
   );
 }
