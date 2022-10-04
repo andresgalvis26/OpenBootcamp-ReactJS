@@ -16,15 +16,11 @@ const unloggedStyle = {
 
 const Greetingstyled = (props) => {
 
-    // Generamos un estado para el componente
-    // Y controlar si el usuario está logueado o no
+    // Generamos un estado para el componente y controlar si el usuario está logueado o no
     const [logged, setLogged] = useState(false);
 
     const greetingUser = () => (<p>Hola, {props.name}</p>);
     const pleaseLogin = () => (<p>PLEASE LOGIN</p>);
-
-
-
 
     return (
         // * El estilo va a ser personalizable a partir de la lógica del controlador
