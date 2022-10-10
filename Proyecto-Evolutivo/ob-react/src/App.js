@@ -13,6 +13,7 @@ import Father from './components/container/father';
 import Optionalrender from './components/pure/optionalRender';
 import Loginformik from './components/pure/forms/loginFormik';
 import Registerformik from './components/pure/forms/registerFormik';
+import Taskformik from './components/pure/forms/taskFormik';
 
 function App() {
   return (
@@ -64,6 +65,8 @@ function App() {
 
       {/* </header> */}
       {/* <TaskListComponent></TaskListComponent> */}
+      <Taskformik></Taskformik>
+
 
 
       {/* Gestión de eventos */}
@@ -78,7 +81,7 @@ function App() {
 
       {/* Ejemplo de uso de Formik */}
       {/* <Loginformik></Loginformik> */}
-      <Registerformik></Registerformik>
+      {/* <Registerformik></Registerformik> */}
 
     </div>
   );
