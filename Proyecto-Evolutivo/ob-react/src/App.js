@@ -11,6 +11,8 @@ import Greetingstyled from './components/pure/greetingStyled';
 // import Ejemplo4 from './hooks/Ejemplo4.jsx'
 import Father from './components/container/father';
 import Optionalrender from './components/pure/optionalRender';
+import Loginformik from './components/pure/forms/loginFormik';
+import Registerformik from './components/pure/forms/registerFormik';
 
 function App() {
   return (
@@ -71,7 +73,12 @@ function App() {
       {/*  Ejemplo de Renderizado Condicional  */}
       {/* Una lista de elementos ya es un renderizado condicional, porque se renderizara dependiendo del número de elementos que tenga la lista. */}
       {/* Un map también es un renderizado condicional, depende de una lógica. */}
-      <Optionalrender></Optionalrender>
+      {/* <Optionalrender></Optionalrender> */}
+
+
+      {/* Ejemplo de uso de Formik */}
+      {/* <Loginformik></Loginformik> */}
+      <Registerformik></Registerformik>
 
     </div>
   );

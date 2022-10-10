@@ -26,7 +26,9 @@ const TaskListComponent = () => {
     */
     useEffect(() => {
         console.log('Task State has been modified.')
-        setLoading(false);
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000)
         return () => {
             console.log('Task_List component is going to unmount.')
         };
@@ -67,7 +69,7 @@ const TaskListComponent = () => {
     // ? Añadir una tarea
     function addTask(task) {
         console.log('Add this task:', task)
-        const index = tasks.indexOf(task);
+        
 
         // Utilizar siempre una variable temporal
         const tempTasks = [...tasks]
@@ -76,6 +78,57 @@ const TaskListComponent = () => {
         tempTasks.push(task);
 
         setTasks(tempTasks);
+    }
+
+
+    // ? Pintar la tabla o NO
+    const Table = () => {
+        return  (
+            <table>
+                <thead>
+                    <tr>
+                        <th scope='col'>Título</th>
+                        <th scope='col'>Descripción</th>
+                        <th scope='col'>Prioridad</th>
+                        <th scope='col'>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {/* El map devolverá diferentes tareas  */}
+                    { tasks.map((task, index) => {
+                        return (
+                            <TaskComponent 
+                                key={index} 
+                                task={task}
+                                complete={completeTask}
+                                remove={deleteTask}>    
+                            </TaskComponent>
+                            )
+                        } 
+                    )}
+                </tbody>
+            </table>
+        )
+    }
+
+    let taskTable;
+
+    if(tasks.length > 0) {
+        taskTable = <Table></Table>
+    } else {
+        taskTable = (
+            <div>
+                <h3>You have no tasks available to do.</h3>
+                <h5>Please create tasks to do.</h5>
+            </div>
+        ) 
+    }
+
+    const loadingStyle = {
+        color: 'grey',
+        fontSize: '30px',
+        fontWeigth: 'bold'
     }
 
     return (
@@ -89,39 +142,13 @@ const TaskListComponent = () => {
 
                     {/* Card Body - Content  */}
                     <div className='card-body' data-mdb-perfect-scrollbar='true' style={ {position: 'relative', height: '400px'} }>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th scope='col'>Título</th>
-                                    <th scope='col'>Descripción</th>
-                                    <th scope='col'>Prioridad</th>
-                                    <th scope='col'>Acciones</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {/* ! Aplicar el map para renderizar una lista */}
-                                {/* TODO: Iterar sobre una lista de tareas */}
-
-                                {/* El map devolverá diferentes tareas  */}
-                                { tasks.map((task, index) => {
-                                    return (
-                                        <TaskComponent 
-                                            key={index} 
-                                            task={task}
-                                            complete={completeTask}
-                                            remove={deleteTask}>    
-                                        </TaskComponent>
-                                        )
-                                    } 
-                                )}
-                            </tbody>
-                        </table>
+                        {/* TODO: Añadir un spinner de carga */}
+                        {loading ? (<p style={loadingStyle}>Loading tasks...</p>) : taskTable}
                     </div>
 
                 </div>
             </div>
-            <Taskform add={addTask}></Taskform>
+            <Taskform add={addTask} length={tasks.length}></Taskform>
             
 
             {/* Enviando la tarea por medio de props */}
